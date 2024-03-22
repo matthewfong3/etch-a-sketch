@@ -4,48 +4,49 @@ $(document).ready(() => {
     let container = document.querySelector("#container");
     let resetBtn = document.querySelector("#resetBtn");
 
-    //container.style.width = (16 * 20) + 'px';
-    createGrid(container, 16);
+    createGrid(container, 16); // initialize a 16x16 grid
 
     resetBtn.addEventListener('click', () => {
-        let size = prompt('Please enter size of new grid');
+        let dimensions = prompt('Please enter dimensions of new grid');
 
-        while(size >= 100){
-            size = prompt('Please enter size of new grid (less than 100)'); 
+        while(Number(dimensions) >= 100){
+            dimensions = prompt('Please enter dimensions of new grid (less than 100)'); 
         }
 
-        resetGrid(container, size);
+        resetGrid(container, dimensions);
     });
 });
 
 // function that makes a custom grid 
-const createGrid = (container, size) => {
-    let gSize = size * size;
-    for(let i = 0; i < gSize; i++){
+const createGrid = (container, dimensions) => {
+    let gridSize = dimensions ** 2;
+    let canvasSize = 800;
+
+    for(let i = 0; i < gridSize; i++){
         let color = getRandomColor();
         let div = document.createElement('div');
+
         div.setAttribute('class', 'cell');
         //div.textContent = (i+1);
-        div.style.width = (960 / size) + 'px';
-        div.style.height = (960 / size) + 'px';
+        div.style.width = (canvasSize / dimensions) + 'px';
+        div.style.height = (canvasSize / dimensions) + 'px';
         div.addEventListener('mouseover', (e) => {
             mouseOver(e, color);
         });
-        //div.addEventListener('mouseout', mouseOut);
+
         container.appendChild(div);
     }
 };
 
 // function that resets the Etch-a-sketch grid
-const resetGrid = (container, size) =>{
+const resetGrid = (container, dimensions) =>{
     let cells = document.getElementsByClassName('cell');
 
     for(let cell of cells){
         cell.parentNode.removeChild(cell);
     }
     container.innerHTML = '';
-    //container.style.width = (size * 20) + 'px';
-    createGrid(container, size);
+    createGrid(container, dimensions);
 };
 
 // bonus: random color for each new grid iteration

@@ -12,21 +12,19 @@ h1{
 #resetBtn{
     display: block;
     margin: 20px auto;
-    padding: 10px;
+    padding: 5px 10px;
 }
 
 #container{
     border: 2px solid black;
+    margin: 0 auto;
+    width: 800px;
+    height: 800px;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 auto;
-    width: 960px;
-    height: 960px;
 }
 
 .cell{
     flex: 1 1 auto;
-    /*width: 20px;
-    height: 20px;*/
     text-align: center;
 }
